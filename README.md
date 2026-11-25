@@ -10,8 +10,8 @@ The indexed theorem and the inhabited production caller passed the **Lean 4.37.0
 
 - **Read the manuscript.** [PDF](papers/type-i-torsion/manuscript/paper.pdf) · [GitHub reading copy](papers/type-i-torsion/manuscript/paper_github.md)
 - **Check the theorem and quotients.** [Theorem A, local excess and production corollary](papers/type-i-torsion/manuscript/paper_github.md#main-result)
-- **Follow the proof.** [Integral separating row](papers/type-i-torsion/manuscript/paper_github.md#separation) · [Same-place order](papers/type-i-torsion/manuscript/paper_github.md#same-place-order) · [Prime selection and depth](papers/type-i-torsion/manuscript/paper_github.md#selection)
-- **Inspect the formal result.** [Indexed theorem](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIIndexedTargets.lean#L122) · [Production caller](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIProductionCaller.lean#L111) · [Verification and reproduction](papers/type-i-torsion/verification/LEAN.md)
+- **Understand why it works.** [Reader guide](papers/type-i-torsion/reading/EXPLAINED.md) · [Lamport Plus proof map](papers/type-i-torsion/reading/PROOF_MAP.md#dependency-map)
+- **Inspect the formal result.** [Indexed theorem](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIIndexedTargets.lean#L122) · [Production caller](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIProductionCaller.lean#L111) · [Verification and reproduction](papers/type-i-torsion/verification/LEAN.md) · [Completed Modal checks](papers/type-i-torsion/verification/MODAL.md)
 
 ## How the proof works
 
@@ -22,6 +22,7 @@ The arithmetic selection fixes a word before choosing a prime, a served place an
 | Location | Contents |
 | --- | --- |
 | [Manuscript source](papers/type-i-torsion/manuscript/paper.md) | Editable Pandoc Markdown. The PDF and GitHub reading copy are generated from this source. |
+| [Explanation and proof map](papers/type-i-torsion/reading/EXPLAINED.md) | Mathematical intuition, expandable proof steps and reconstruction questions. |
 | [Lean source overlay](papers/type-i-torsion/lean) | The 38-file source overlay from the checked run at its original relative paths, the audit input and the source checksums. |
 | [Verification record](papers/type-i-torsion/verification/LEAN.md) | Exact declarations and scope, pinned environment, build and axiom results, and reproduction commands. |
 

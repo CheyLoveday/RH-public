@@ -1,0 +1,75 @@
+{
+  "date_utc": "2026-11-25",
+  "provider": "Modal",
+  "upstream_revision": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "mathlib_revision": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "lean_toolchain": "leanprover/lean4:v4.37.0-rc1",
+  "fixed_place_core": {
+    "module": "Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.TypeINativeQuotientCore",
+    "source_sha256": "ab26256887f969638a50518a2c62c19394d79b18bcaa3d148b63491fda22c5b3",
+    "target": "GlobalTheory.EX.TypeIProduction.servedWord_fromNativeAdjacentCapacity_withSeedBridge",
+    "supplied_inputs": [
+      "fixed member and word",
+      "supported served place and selected orbit",
+      "native adjacent capacities and omission depth",
+      "chart-unit interface"
+    ],
+    "export": {
+      "sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+      "bytes": 686426131,
+      "compression_sha256": "0dc097435d329090d859805972eefbf9b300793561deebecac208c57046eea5a"
+    },
+    "checks": {
+      "leanchecker": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "205a84bd58a6ac4c222e2f0196a953acca038aa1171bc625d3313f7714a71a7f",
+        "provenance": "Compatible earlier run confirmed on the same export",
+        "tool_sha256": "437c52be453b0bd769f2c9f852f4a8f1668888a8e7c50b063722e534c5993dd0"
+      },
+      "leanchecker-paranoid": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "240e0f8b336c382be367440daf2317d2a567b5f39dfa74521ea3372578120bae",
+        "provenance": "Executed on the completion worker",
+        "tool_sha256": "7a2b8415adf629cc55e4de86243ba0b5198e9af75b3181491363c1d18cd622f1"
+      },
+      "lean4lean": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "6da1653e49efb4bc020132746d0ace994264715deb4007c0612eb3ed81955312",
+        "provenance": "Executed on the completion worker",
+        "tool_sha256": "baaec030a70c78562ced2c75866ab0d2410e81ce680b835179ed16570ad5ef97"
+      },
+      "nanoda": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "cf3011110b9eb96da8f9311d7f28c89b83637d2dce39a2571bdbdeff96eb486c",
+        "provenance": "Executed on the completion worker",
+        "tool_sha256": "5c34d6124b19dfd23c7d0377b520893cf8adec5c23fa0c809dde9e38eb201ffe"
+      },
+      "con-leche": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "562c55fee5c8778086e7ca673be551b068976cb363b35768d604238e85a26928",
+        "provenance": "Executed on the completion worker",
+        "tool_sha256": "8fff3f055d032b66d5262cb6db4fb916328b4931a98634630f7481b1e3449308"
+      },
+      "con-ron": {
+        "status": "PASS",
+        "exit": 0,
+        "input_sha256": "b688ef2c8296ff7a38eaa136f4e7b5ddea96b5f1a0029b3f4dc58224684b7c28",
+        "log_sha256": "496791a72442132046ce6caf1ee9546b252836fc90c5ff47284d64e9c2a6206d",
+        "provenance": "Executed on the completion worker",
+        "tool_sha256": "e3241d3bb154d40ee92671440497d1a51564dd6f654aa7d01e8812ee04d73ce9"
+      }
+    }
+  },
+  "integrated_record": "run.json",
+  "integrated_record_sha256": "cb28fe6f3ca0b9a597fdd09c0f9644c292e1171cc223dde923f4ff816578fd9b"
+}
