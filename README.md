@@ -1,6 +1,6 @@
 # Extra Type I torsion via integral Frobenius separation
 
-**Chey Loveday · 25 November 2026 · Research draft v0.1.1**
+**Chey Loveday · 25 November 2026 · Research draft v0.1.1 with proof clarifications**
 
 Under the original family hypotheses in Alpöge’s construction, a single class has exact additive order $p^{T+1}$ in the original word quotient and retains that exact order at the selected served place $w\mid p$. Here $T$ is the cutoff for that fibre. At the same place, the ramified local quotient has at least $v_{O_w}(p)$ more length than the scalar contribution. The production corollary supplies a member and word beyond any prescribed lower bound. The witness is existential.
 
@@ -30,6 +30,6 @@ Run `make` with Python 3, Pandoc and Tectonic to regenerate the reading copies. 
 
 ## Version history and citation
 
-Version 0.1.1 publishes the checked Lean sources and integrated audit. The formal verification update leaves the mathematical theorem and paper proof as in version 0.1.0. [Previous research draft](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.0)
+Version 0.1.1 publishes the checked Lean sources and integrated audit. The current proof clarifies the nonempty-orbit condition, the extraction of the ramified seed from the integral span, and the size bound for the short-order exclusion. The theorem statements are unchanged. [Tagged v0.1.1 edition](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.1) · [Previous research draft](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.0)
 
 Chey Loveday. *Extra Type I torsion via integral Frobenius separation*. GitHub research draft v0.1.1, 25 November 2026.
