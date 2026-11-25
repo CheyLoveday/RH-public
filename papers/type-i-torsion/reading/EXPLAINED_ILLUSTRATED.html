@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An illustrated guide to the Type I extra torsion proof and a worked local quotient example.">
+<title>Why one extra power of p survives</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #152e44;
+    --muted: #435a6a;
+    --page: #f3f6f8;
+    --surface: #fff;
+    --line: #c3d2dc;
+    --trace: #15686b;
+    --trace-light: #e7f4f2;
+    --highlight: #fbe6a9;
+    --link: #24518b;
+    --serif: Charter, "Bitstream Charter", Georgia, serif;
+    --sans: system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 1rem; }
+  body { margin: 0; color: var(--ink); background: var(--page); font: 1.13rem/1.68 var(--serif); }
+  a { color: var(--link); text-underline-offset: .15em; }
+  a:focus-visible { outline: 3px solid var(--trace); outline-offset: 3px; }
+  .masthead { background: var(--ink); color: white; }
+  .masthead > div, nav, main, footer { width: min(74rem, calc(100% - 3rem)); margin-inline: auto; }
+  .masthead > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; padding: .85rem 0; }
+  .masthead a { color: white; }
+  .masthead a:focus-visible { outline-color: var(--highlight); }
+  .masthead, nav, th, footer { font-family: var(--sans); }
+  .masthead span { color: #d9e6ed; }
+  nav { display: flex; flex-wrap: wrap; gap: .28rem 1.6rem; padding: .95rem 0; font-size: .88rem; border-bottom: 1px solid var(--line); }
+  nav a { padding: .23rem 0; }
+  main { padding-bottom: 2rem; }
+  h1, h2, h3 { line-height: 1.12; margin-top: 0; }
+  h1 { max-width: 18ch; margin: 2.7rem 0 1.1rem; font-size: clamp(2.65rem, 6vw, 5rem); letter-spacing: -.045em; }
+  h2 { margin-bottom: .8rem; font-size: clamp(1.65rem, 3vw, 2.35rem); letter-spacing: -.025em; }
+  p { margin: .7rem 0 1rem; max-width: 71ch; }
+  h1 + p { font-size: 1.17em; max-width: 66ch; margin-bottom: 2rem; }
+  .level2 { padding: 1.75rem 0; border-top: 1px solid var(--line); }
+  #the-idea { padding-block: 1.55rem; }
+  #the-idea > p:last-child { margin-bottom: 0; }
+  #follow-one-word-and-place { border-top: 3px solid var(--trace); }
+  #follow-one-word-and-place > p { padding: .65rem .9rem; background: var(--trace-light); border-left: 3px solid var(--trace); }
+  #follow-one-word-and-place > ol {
+    counter-reset: route;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1.35rem 0 .55rem;
+    padding: 0;
+    list-style: none;
+  }
+  #follow-one-word-and-place li {
+    position: relative;
+    counter-increment: route;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--trace);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  #follow-one-word-and-place li::before {
+    content: counter(route);
+    display: grid;
+    place-items: center;
+    color: white;
+    background: var(--trace);
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    margin-bottom: .55rem;
+    font: 650 .85rem var(--sans);
+  }
+  #follow-one-word-and-place li:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    left: calc(100% + .22rem);
+    top: .92rem;
+    color: var(--trace);
+    font: 700 1rem var(--sans);
+  }
+  #follow-one-word-and-place li strong { display: block; margin-bottom: .25rem; font-size: 1.12rem; }
+  #follow-one-word-and-place li p { margin: 0; }
+  table { border-collapse: collapse; background: var(--surface); width: 100%; margin: 1.1rem 0; }
+  th, td { border: 1px solid var(--line); padding: .58rem .72rem; vertical-align: top; }
+  th { text-align: left; font-size: .9rem; background: #e8eef3; }
+  td { font-size: 1rem; }
+  #what-one-extra-layer-means > table { max-width: 50rem; font-variant-numeric: tabular-nums; }
+  #what-one-extra-layer-means :is(th, td):not(:first-child) { text-align: center; }
+  #what-one-extra-layer-means td:has(strong) { color: var(--ink); background: var(--highlight); }
+  #travel-through-the-proof td:first-child { font-weight: bold; width: 23%; }
+  #travel-through-the-proof td:last-child { width: 21%; }
+  p:has(> math[display=block]) { max-width: 100%; overflow-x: auto; padding: .3rem 0; }
+  #reconstruct-the-proof > ol { padding-left: 1.35rem; max-width: 72ch; }
+  #reconstruct-the-proof > ol > li { padding-left: .2rem; margin-bottom: .45rem; }
+  footer { border-top: 1px solid var(--line); padding: 1rem 0 2rem; color: var(--muted); font-size: .83rem; overflow-wrap: anywhere; }
+  footer p { margin: .3rem 0; max-width: none; }
+  @media (max-width: 58rem) {
+    #follow-one-word-and-place > ol { grid-template-columns: minmax(0, 1fr); gap: 1.3rem; }
+    #follow-one-word-and-place li { padding-left: 3.35rem; }
+    #follow-one-word-and-place li::before { position: absolute; left: .9rem; top: .91rem; }
+    #follow-one-word-and-place li:not(:last-child)::after { content: "↓"; top: calc(100% + .13rem); left: 1.25rem; }
+  }
+  @media (max-width: 40rem) {
+    .masthead > div, nav, main, footer { width: calc(100% - 1.65rem); }
+    body { font-size: 1.02rem; }
+    h1 { margin-top: 1.6rem; }
+    th, td { padding: .41rem .32rem; }
+    td { font-size: .92rem; }
+    #travel-through-the-proof thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    #travel-through-the-proof :is(table,tbody,tr,td) { display: block; width: 100%; }
+    #travel-through-the-proof tr { border: 1px solid var(--line); border-bottom: 0; padding: .52rem .64rem; }
+    #travel-through-the-proof tr:last-child { border-bottom: 1px solid var(--line); }
+    #travel-through-the-proof td { border: 0; }
+    #travel-through-the-proof :is(td:first-child, td:last-child) { width: auto; }
+  }
+  @media print {
+    body { background: white; font-size: 10pt; }
+    .masthead { background: white; color: var(--ink); }
+    .masthead :is(a,span) { color: var(--ink); }
+    nav { display: none; }
+    h1 { font-size: 32pt; }
+    h2 { break-after: avoid; }
+    #follow-one-word-and-place li, table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div><a href="https://github.com/CheyLoveday/RH-public">RH-public</a><span>Illustrated companion to the Type I paper</span></div>
+</header>
+<nav aria-label="Guide sections">
+  <a href="#follow-one-word-and-place">Word and place</a>
+  <a href="#what-one-extra-layer-means">Worked example</a>
+  <a href="#travel-through-the-proof">Proof steps</a>
+  <a href="#reconstruct-the-proof">Reconstruction questions</a>
+</nav>
+<main>
+<section id="why-one-extra-power-of-p-survives" class="level1">
+<h1>Why one extra power of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> survives</h1>
+<p>The Type I estimate in Alpöge’s construction leaves room for extra torsion. The paper shows that the arithmetic actually uses some of that room. For each sufficiently large member of an original family and each word in that member, it selects a prime <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and a place <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math> above it. One class in the original word quotient has exact additive order <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math>, and its image at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math> has that same order. Here <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> is the cutoff for the chosen fibre. The production corollary supplies a member and word beyond any prescribed bound. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/manuscript/paper_github.md#main-result">Exact statement and hypotheses</a></p>
+<section id="the-idea" class="level2">
+<h2>The idea</h2>
+<p>A quotient forgets whatever lies in its denominator. To prove that a vector survives, find a measurement that vanishes on the denominator but takes a nonzero value on the vector. Here the measurement is an integral linear functional, called a <strong>row</strong>, used modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math>. It takes a unit value on the image of a ramified form. Multiplying that form by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mi>T</mi></msup><annotation encoding="application/x-tex">p^T</annotation></semantics></math> gives a reading of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mi>T</mi></msup><annotation encoding="application/x-tex">p^T</annotation></semantics></math> times a unit, which is still nonzero modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math>.</p>
+<p>The hard part is making this measurement on the <strong>same word and place</strong> where the source comparison and denominator are defined. The final step needs a global killing power as well as local survival. These are two different pieces of the proof.</p>
+</section>
+<section id="follow-one-word-and-place" class="level2">
+<h2>Follow one word and place</h2>
+<p>The member <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">(</mo><mi>x</mi><mo>,</mo><mi>i</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">(x,i)</annotation></semantics></math> and word <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math> are fixed first. Once the proof chooses <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> and a supported place <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mo>∣</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">w\mid p</annotation></semantics></math> for that word, every local calculation uses that same <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>.</p>
+<ol type="1">
+<li><strong>Select the fibre.</strong> Fix <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>u</mi><annotation encoding="application/x-tex">u</annotation></semantics></math>. Choose <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>,</mo><mi>w</mi></mrow><annotation encoding="application/x-tex">p,w</annotation></semantics></math> and an adjacent pair of top slots on a rank-one orbit at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp1">Selection</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp2">Depth</a></li>
+<li><strong>Join the row and the seed.</strong> On this word, construct a ramified seed <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo>∈</mo><msub><mi>A</mi><mi>u</mi></msub></mrow><annotation encoding="application/x-tex">b\in A_u</annotation></semantics></math>. Its compared numerator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>w</mi></msub><mo>=</mo><msub><mi>c</mi><mi>w</mi></msub><mo stretchy="false" form="prefix">(</mo><mi>b</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">a_w=c_w(b)</annotation></semantics></math> is in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>A</mi><mi>w</mi></msub><annotation encoding="application/x-tex">A_w</annotation></semantics></math>. The row <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>λ</mi><annotation encoding="application/x-tex">\lambda</annotation></semantics></math> at this place reads a unit on <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>a</mi><mi>w</mi></msub><annotation encoding="application/x-tex">a_w</annotation></semantics></math>. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp3">Row</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp4">Seed</a></li>
+<li><strong>Read the extra layer.</strong> At the same place the row sends the actual denominator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>U</mi><mi>w</mi></msub><annotation encoding="application/x-tex">U_w</annotation></semantics></math> into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><msub><mi>O</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">p^{T+1}O_w</annotation></semantics></math>. The reading of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mi>T</mi></msup><msub><mi>a</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">p^Ta_w</annotation></semantics></math> is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mi>T</mi></msup><annotation encoding="application/x-tex">p^T</annotation></semantics></math> times a unit and survives modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math>. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp5">Literal denominator</a></li>
+<li><strong>Follow one class.</strong> The served comparison uses this same word and place to produce one class <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math> killed by <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math> globally. Its <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mi>T</mi></msup><annotation encoding="application/x-tex">p^T</annotation></semantics></math> multiple survives at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>w</mi><annotation encoding="application/x-tex">w</annotation></semantics></math>. Its order and its image’s order are both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math>. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp6">Exact order</a></li>
+</ol>
+</section>
+<section id="what-one-extra-layer-means" class="level2">
+<h2>What one extra layer means</h2>
+<p><strong>Worked model.</strong> Take <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">p=3</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">T=2</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo>=</mo><msub><mi mathvariant="double-struck">ℤ</mi><mrow><mo stretchy="false" form="prefix">(</mo><mn>3</mn><mo stretchy="false" form="postfix">)</mo></mrow></msub></mrow><annotation encoding="application/x-tex">O=\mathbb Z_{(3)}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>O</mi></mrow><annotation encoding="application/x-tex">A=O</annotation></semantics></math>, and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>=</mo><mn>27</mn><mi>O</mi></mrow><annotation encoding="application/x-tex">U=27O</annotation></semantics></math>. Use the identity as the row. It reads <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> on the seed <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">a=1</annotation></semantics></math> and takes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math> into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>27</mn><mi>O</mi></mrow><annotation encoding="application/x-tex">27O</annotation></semantics></math>. This model illustrates the local quotient step. The paper supplies its production fibre by a separate existence argument.</p>
+<table>
+<thead>
+<tr>
+<th>Multiply the seed by</th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>9</mn><annotation encoding="application/x-tex">9</annotation></semantics></math></th>
+<th><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>27</mn><annotation encoding="application/x-tex">27</annotation></semantics></math></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>In the scalar quotient <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>/</mi><mn>9</mn><mi>A</mi></mrow><annotation encoding="application/x-tex">A/9A</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+</tr>
+<tr>
+<td>In the actual quotient <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>/</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A/U</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math></td>
+<td><strong><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>9</mn><annotation encoding="application/x-tex">9</annotation></semantics></math></strong></td>
+<td><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0</mn><annotation encoding="application/x-tex">0</annotation></semantics></math></td>
+</tr>
+</tbody>
+</table>
+<p>The extra layer is the kernel of the projection from the actual quotient to the scalar quotient.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>→</mo><mn>9</mn><mi>O</mi><mi>/</mi><mn>27</mn><mi>O</mi><mo>→</mo><mi>O</mi><mi>/</mi><mn>27</mn><mi>O</mi><mo>→</mo><mi>O</mi><mi>/</mi><mn>9</mn><mi>O</mi><mo>→</mo><mn>0</mn><mi>.</mi></mrow><annotation encoding="application/x-tex">
+0\longrightarrow 9O/27O\longrightarrow O/27O\longrightarrow O/9O\longrightarrow 0 .
+</annotation></semantics></math></p>
+<p>The extra layer has the three classes <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>0</mn><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mo stretchy="false" form="prefix">[</mo><mn>9</mn><mo stretchy="false" form="postfix">]</mo><mo>,</mo><mo stretchy="false" form="prefix">[</mo><mn>18</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[0],[9],[18]</annotation></semantics></math> and length one over <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>O</mi><annotation encoding="application/x-tex">O</annotation></semantics></math>. Its generator <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>9</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[9]</annotation></semantics></math> has additive order <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>3</mn><annotation encoding="application/x-tex">3</annotation></semantics></math>, while the seed class <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false" form="prefix">[</mo><mn>1</mn><mo stretchy="false" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[1]</annotation></semantics></math> in the actual quotient has additive order <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>27</mn><annotation encoding="application/x-tex">27</annotation></semantics></math>. The scalar quotient has length two, and the actual quotient has length three.</p>
+<p>In the paper, the lattice <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>A</mi><mi>w</mi></msub><annotation encoding="application/x-tex">A_w</annotation></semantics></math> can have higher rank. The row gives a <strong>surjection from the extra layer</strong> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mi>T</mi></msup><msub><mi>A</mi><mi>w</mi></msub><mi>/</mi><msub><mi>U</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">p^TA_w/U_w</annotation></semantics></math> onto <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mi>T</mi></msup><msub><mi>O</mi><mi>w</mi></msub><mi>/</mi><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><msub><mi>O</mi><mi>w</mi></msub></mrow><annotation encoding="application/x-tex">p^TO_w/p^{T+1}O_w</annotation></semantics></math>. The target has length <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>e</mi><mi>w</mi></msub><mo>=</mo><msub><mi>v</mi><msub><mi>O</mi><mi>w</mi></msub></msub><mo stretchy="false" form="prefix">(</mo><mi>p</mi><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">e_w=v_{O_w}(p)</annotation></semantics></math>, which gives a lower bound on the extra length. The global order uses the separate served comparison argument shown in the last step of the diagram. <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp5">Local length</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp6">Global order</a></p>
+</section>
+<section id="travel-through-the-proof" class="level2">
+<h2>Travel through the proof</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Where does the place come from?</td>
+<td>Fix the word first. Count pairs of top positions whose difference is the Frobenius step of an eligible prime. The lower bound for these pairs survives the source exclusions. The selected prime gives a supported place for the word.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp1">Select the fibre</a></td>
+</tr>
+<tr>
+<td>Why does the row see a difference?</td>
+<td>At two adjacent slots, Frobenius relates the coefficients of a line and a complementary hyperplane. For every incoming neighbour the relevant contraction contains a factor <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>. At a chosen output vector, the same contraction reads a unit. Enough labelled factors let the proof repeat the contraction <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">T+1</annotation></semantics></math> times.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp2">Depth</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp3">Integral Frobenius row</a></td>
+</tr>
+<tr>
+<td>How does the unit get into the ramified lattice?</td>
+<td>Restrict to one adelic class inside the original integral word lattice. Apply one sign difference in each tame coordinate. Full norms cancel, and freeness moves every nonempty sign term off the chosen class. The readout at that class survives intact.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp4">Ramified seed</a></td>
+</tr>
+<tr>
+<td>Why does this test every term of the denominator?</td>
+<td>A term retaining the selected orbit contains its neighbour operator. A term omitting it already contains a high enough scalar power. The row sees a multiple of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><annotation encoding="application/x-tex">p^{T+1}</annotation></semantics></math> in either case.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp5">Denominator and length</a></td>
+</tr>
+<tr>
+<td>Why do both orders equal the same power?</td>
+<td>Find the first power that kills the seed at this place. The served comparison gives a multiplier outside the prime of that same place that makes this power zero globally. If that multiplier also made the previous power zero locally, the comparison would give a second multiplier outside the same prime. Their product would contradict the choice of first power.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp6">Transport exact order</a></td>
+</tr>
+<tr>
+<td>Does the family actually supply a word?</td>
+<td>The original design and host construction gives the family. Its inhabited window supplies a member above the proof threshold and the source supplies a distinguished word there.</td>
+<td><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md#lp7">Apply the production construction</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="reconstruct-the-proof" class="level2">
+<h2>Reconstruct the proof</h2>
+<p>Try these before opening the detailed steps.</p>
+<ol type="1">
+<li>Starting from a unit reading, explain why the row detects survival at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>p</mi><mi>T</mi></msup><annotation encoding="application/x-tex">p^T</annotation></semantics></math> even if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">T&gt;0</annotation></semantics></math> and reducing the reading directly modulo <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> gives zero.</li>
+<li>Explain why the denominator proof needs both the retained-orbit and omitted-orbit cases. Which case still needs a calculation if the omitted-orbit scalar is too small?</li>
+<li>Explain where the same served prime enters the argument that clearing the global denominator preserves local survival. What fails if the multiplier can belong to that prime?</li>
+<li>Locate the step that rules out a vacuous family statement with no sufficiently large member.</li>
+</ol>
+<p><strong>Transfer exercise.</strong> Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>O</mi><annotation encoding="application/x-tex">O</annotation></semantics></math> be a discrete valuation ring in which <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> has valuation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>e</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">e&gt;0</annotation></semantics></math>. Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> be free of rank <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>r</mi><annotation encoding="application/x-tex">r</annotation></semantics></math> over <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>O</mi><annotation encoding="application/x-tex">O</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>U</mi><mo>⊆</mo><msup><mi>p</mi><mi>T</mi></msup><mi>A</mi></mrow><annotation encoding="application/x-tex">U\subseteq p^TA</annotation></semantics></math>. Suppose two rows on <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> take <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>U</mi><annotation encoding="application/x-tex">U</annotation></semantics></math> into <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>p</mi><mrow><mi>T</mi><mo>+</mo><mn>1</mn></mrow></msup><mi>O</mi></mrow><annotation encoding="application/x-tex">p^{T+1}O</annotation></semantics></math> and their readouts on two vectors of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> form a matrix with unit determinant. Work out a lower bound on the length of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mi>/</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A/U</annotation></semantics></math> and identify which part comes from the two rows. Explain which further premise would give finiteness if you are only given these two rows. This is a model question about the method. The paper constructs one row on the selected fibre.</p>
+<p><a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/PROOF_MAP.md">Detailed Lamport Plus proof map</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/verification/LEAN.md">Lean crosswalk</a> · <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/verification/MODAL.md">Completed Modal checks</a></p>
+</section>
+</section>
+</main>
+<footer>
+  <p>Generated reading edition. Edit <a href="https://github.com/CheyLoveday/RH-public/blob/main/papers/type-i-torsion/reading/EXPLAINED.md"><code>papers/type-i-torsion/reading/EXPLAINED.md</code></a>.</p>
+  <p>Source SHA-256 <code>27c5d05d3a968845be988ed04c5d25834c9baaee6e387904f2f26d61b867e3cc</code>. Generate with <code>python3 scripts/illustrated_guide.py</code>.</p>
+</footer>
+</body>
+</html>

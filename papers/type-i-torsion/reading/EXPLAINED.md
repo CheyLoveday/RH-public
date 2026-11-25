@@ -8,6 +8,34 @@ A quotient forgets whatever lies in its denominator. To prove that a vector surv
 
 The hard part is making this measurement on the **same word and place** where the source comparison and denominator are defined. The final step needs a global killing power as well as local survival. These are two different pieces of the proof.
 
+## Follow one word and place
+
+The member $(x,i)$ and word $u$ are fixed first. Once the proof chooses $p$ and a supported place $w\mid p$ for that word, every local calculation uses that same $w$.
+
+1. **Select the fibre.** Fix $u$. Choose $p,w$ and an adjacent pair of top slots on a rank-one orbit at $w$. [Selection](PROOF_MAP.md#lp1) · [Depth](PROOF_MAP.md#lp2)
+2. **Join the row and the seed.** On this word, construct a ramified seed $b\in A_u$. Its compared numerator $a_w=c_w(b)$ is in $A_w$. The row $\lambda$ at this place reads a unit on $a_w$. [Row](PROOF_MAP.md#lp3) · [Seed](PROOF_MAP.md#lp4)
+3. **Read the extra layer.** At the same place the row sends the actual denominator $U_w$ into $p^{T+1}O_w$. The reading of $p^Ta_w$ is $p^T$ times a unit and survives modulo $p^{T+1}$. [Literal denominator](PROOF_MAP.md#lp5)
+4. **Follow one class.** The served comparison uses this same word and place to produce one class $z$ killed by $p^{T+1}$ globally. Its $p^T$ multiple survives at $w$. Its order and its image’s order are both $p^{T+1}$. [Exact order](PROOF_MAP.md#lp6)
+
+## What one extra layer means
+
+**Worked model.** Take $p=3$, $T=2$, $O=\mathbb Z_{(3)}$, $A=O$, and $U=27O$. Use the identity as the row. It reads $1$ on the seed $a=1$ and takes $U$ into $27O$. This model illustrates the local quotient step. The paper supplies its production fibre by a separate existence argument.
+
+| Multiply the seed by | $1$ | $3$ | $9$ | $27$ |
+| --- | --- | --- | --- | --- |
+| In the scalar quotient $A/9A$ | $1$ | $3$ | $0$ | $0$ |
+| In the actual quotient $A/U$ | $1$ | $3$ | **$9$** | $0$ |
+
+The extra layer is the kernel of the projection from the actual quotient to the scalar quotient.
+
+$$
+0\longrightarrow 9O/27O\longrightarrow O/27O\longrightarrow O/9O\longrightarrow 0 .
+$$
+
+The extra layer has the three classes $[0],[9],[18]$ and length one over $O$. Its generator $[9]$ has additive order $3$, while the seed class $[1]$ in the actual quotient has additive order $27$. The scalar quotient has length two, and the actual quotient has length three.
+
+In the paper, the lattice $A_w$ can have higher rank. The row gives a **surjection from the extra layer** $p^TA_w/U_w$ onto $p^TO_w/p^{T+1}O_w$. The target has length $e_w=v_{O_w}(p)$, which gives a lower bound on the extra length. The global order uses the separate served comparison argument shown in the last step of the diagram. [Local length](PROOF_MAP.md#lp5) · [Global order](PROOF_MAP.md#lp6)
+
 ## Travel through the proof
 
 | Question | Answer | Details |
@@ -18,12 +46,6 @@ The hard part is making this measurement on the **same word and place** where th
 | Why does this test every term of the denominator? | A term retaining the selected orbit contains its neighbour operator. A term omitting it already contains a high enough scalar power. The row sees a multiple of $p^{T+1}$ in either case. | [Denominator and length](PROOF_MAP.md#lp5) |
 | Why do both orders equal the same power? | Find the first power that kills the seed at this place. The served comparison gives a multiplier outside the prime of that same place that makes this power zero globally. If that multiplier also made the previous power zero locally, the comparison would give a second multiplier outside the same prime. Their product would contradict the choice of first power. | [Transport exact order](PROOF_MAP.md#lp6) |
 | Does the family actually supply a word? | The original design and host construction gives the family. Its inhabited window supplies a member above the proof threshold and the source supplies a distinguished word there. | [Apply the production construction](PROOF_MAP.md#lp7) |
-
-## What one extra layer means
-
-For a model calculation, take the ring $O=\mathbb Z_{(p)}$ and the lattice $A=O$. The scalar quotient $A/p^TA$ has length $T$. If the actual denominator is $U=p^{T+1}A$, there is one further layer $p^TA/U$. It has length one and the image of $1$ in $A/U$ has order $p^{T+1}$.
-
-In the paper, $A_w$ can have higher rank. The row gives a **surjection from the extra layer** $p^TA_w/U_w$ onto $p^TO_w/p^{T+1}O_w$. This proves a lower bound on the size of the layer without describing its entire structure. Over a local ring where the rational prime $p$ has valuation $e_w$, the target has length $e_w$. The global word quotient and its comparison require the separate argument in the last two rows of the proof route. [Precise local length argument](PROOF_MAP.md#lp5)
 
 ## Reconstruct the proof
 

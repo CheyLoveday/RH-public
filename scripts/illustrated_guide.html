@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An illustrated guide to the Type I extra torsion proof and a worked local quotient example.">
+<title>$pagetitle$</title>
+<style>
+  :root {
+    color-scheme: light;
+    --ink: #152e44;
+    --muted: #435a6a;
+    --page: #f3f6f8;
+    --surface: #fff;
+    --line: #c3d2dc;
+    --trace: #15686b;
+    --trace-light: #e7f4f2;
+    --highlight: #fbe6a9;
+    --link: #24518b;
+    --serif: Charter, "Bitstream Charter", Georgia, serif;
+    --sans: system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: 1rem; }
+  body { margin: 0; color: var(--ink); background: var(--page); font: 1.13rem/1.68 var(--serif); }
+  a { color: var(--link); text-underline-offset: .15em; }
+  a:focus-visible { outline: 3px solid var(--trace); outline-offset: 3px; }
+  .masthead { background: var(--ink); color: white; }
+  .masthead > div, nav, main, footer { width: min(74rem, calc(100% - 3rem)); margin-inline: auto; }
+  .masthead > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .35rem 1rem; padding: .85rem 0; }
+  .masthead a { color: white; }
+  .masthead a:focus-visible { outline-color: var(--highlight); }
+  .masthead, nav, th, footer { font-family: var(--sans); }
+  .masthead span { color: #d9e6ed; }
+  nav { display: flex; flex-wrap: wrap; gap: .28rem 1.6rem; padding: .95rem 0; font-size: .88rem; border-bottom: 1px solid var(--line); }
+  nav a { padding: .23rem 0; }
+  main { padding-bottom: 2rem; }
+  h1, h2, h3 { line-height: 1.12; margin-top: 0; }
+  h1 { max-width: 18ch; margin: 2.7rem 0 1.1rem; font-size: clamp(2.65rem, 6vw, 5rem); letter-spacing: -.045em; }
+  h2 { margin-bottom: .8rem; font-size: clamp(1.65rem, 3vw, 2.35rem); letter-spacing: -.025em; }
+  p { margin: .7rem 0 1rem; max-width: 71ch; }
+  h1 + p { font-size: 1.17em; max-width: 66ch; margin-bottom: 2rem; }
+  .level2 { padding: 1.75rem 0; border-top: 1px solid var(--line); }
+  #the-idea { padding-block: 1.55rem; }
+  #the-idea > p:last-child { margin-bottom: 0; }
+  #follow-one-word-and-place { border-top: 3px solid var(--trace); }
+  #follow-one-word-and-place > p { padding: .65rem .9rem; background: var(--trace-light); border-left: 3px solid var(--trace); }
+  #follow-one-word-and-place > ol {
+    counter-reset: route;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 1.35rem 0 .55rem;
+    padding: 0;
+    list-style: none;
+  }
+  #follow-one-word-and-place li {
+    position: relative;
+    counter-increment: route;
+    padding: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 4px solid var(--trace);
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  #follow-one-word-and-place li::before {
+    content: counter(route);
+    display: grid;
+    place-items: center;
+    color: white;
+    background: var(--trace);
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    margin-bottom: .55rem;
+    font: 650 .85rem var(--sans);
+  }
+  #follow-one-word-and-place li:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    left: calc(100% + .22rem);
+    top: .92rem;
+    color: var(--trace);
+    font: 700 1rem var(--sans);
+  }
+  #follow-one-word-and-place li strong { display: block; margin-bottom: .25rem; font-size: 1.12rem; }
+  #follow-one-word-and-place li p { margin: 0; }
+  table { border-collapse: collapse; background: var(--surface); width: 100%; margin: 1.1rem 0; }
+  th, td { border: 1px solid var(--line); padding: .58rem .72rem; vertical-align: top; }
+  th { text-align: left; font-size: .9rem; background: #e8eef3; }
+  td { font-size: 1rem; }
+  #what-one-extra-layer-means > table { max-width: 50rem; font-variant-numeric: tabular-nums; }
+  #what-one-extra-layer-means :is(th, td):not(:first-child) { text-align: center; }
+  #what-one-extra-layer-means td:has(strong) { color: var(--ink); background: var(--highlight); }
+  #travel-through-the-proof td:first-child { font-weight: bold; width: 23%; }
+  #travel-through-the-proof td:last-child { width: 21%; }
+  p:has(> math[display=block]) { max-width: 100%; overflow-x: auto; padding: .3rem 0; }
+  #reconstruct-the-proof > ol { padding-left: 1.35rem; max-width: 72ch; }
+  #reconstruct-the-proof > ol > li { padding-left: .2rem; margin-bottom: .45rem; }
+  footer { border-top: 1px solid var(--line); padding: 1rem 0 2rem; color: var(--muted); font-size: .83rem; overflow-wrap: anywhere; }
+  footer p { margin: .3rem 0; max-width: none; }
+  @media (max-width: 58rem) {
+    #follow-one-word-and-place > ol { grid-template-columns: minmax(0, 1fr); gap: 1.3rem; }
+    #follow-one-word-and-place li { padding-left: 3.35rem; }
+    #follow-one-word-and-place li::before { position: absolute; left: .9rem; top: .91rem; }
+    #follow-one-word-and-place li:not(:last-child)::after { content: "↓"; top: calc(100% + .13rem); left: 1.25rem; }
+  }
+  @media (max-width: 40rem) {
+    .masthead > div, nav, main, footer { width: calc(100% - 1.65rem); }
+    body { font-size: 1.02rem; }
+    h1 { margin-top: 1.6rem; }
+    th, td { padding: .41rem .32rem; }
+    td { font-size: .92rem; }
+    #travel-through-the-proof thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    #travel-through-the-proof :is(table,tbody,tr,td) { display: block; width: 100%; }
+    #travel-through-the-proof tr { border: 1px solid var(--line); border-bottom: 0; padding: .52rem .64rem; }
+    #travel-through-the-proof tr:last-child { border-bottom: 1px solid var(--line); }
+    #travel-through-the-proof td { border: 0; }
+    #travel-through-the-proof :is(td:first-child, td:last-child) { width: auto; }
+  }
+  @media print {
+    body { background: white; font-size: 10pt; }
+    .masthead { background: white; color: var(--ink); }
+    .masthead :is(a,span) { color: var(--ink); }
+    nav { display: none; }
+    h1 { font-size: 32pt; }
+    h2 { break-after: avoid; }
+    #follow-one-word-and-place li, table { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div><a href="https://github.com/CheyLoveday/RH-public">RH-public</a><span>Illustrated companion to the Type I paper</span></div>
+</header>
+<nav aria-label="Guide sections">
+  <a href="#follow-one-word-and-place">Word and place</a>
+  <a href="#what-one-extra-layer-means">Worked example</a>
+  <a href="#travel-through-the-proof">Proof steps</a>
+  <a href="#reconstruct-the-proof">Reconstruction questions</a>
+</nav>
+<main>
+$body$
+</main>
+<footer>
+  <p>Generated reading edition. Edit <a href="EXPLAINED.md"><code>$source_path$</code></a>.</p>
+  <p>Source SHA-256 <code>$source_sha$</code>. Generate with <code>python3 scripts/illustrated_guide.py</code>.</p>
+</footer>
+</body>
+</html>
