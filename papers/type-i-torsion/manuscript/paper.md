@@ -1,7 +1,7 @@
 ---
 title: "Extra Type I torsion via integral Frobenius separation"
 author: "Chey Loveday"
-date: "25 November 2026 · Research draft"
+date: "25 November 2026 · Research draft v0.1.1"
 lang: en-GB
 documentclass: article
 fontsize: 11pt
@@ -12,7 +12,7 @@ urlcolor: blue
 
 ## Abstract {#abstract}
 
-We study the extra-torsion question for the Type I lattice quotient in Alpöge’s construction. Under the original production hypotheses, the paper argument selects an eligible prime and a served place after the family member and word have been fixed. It constructs one class of exact additive order $p^{T+1}$ in the original word quotient whose image has that same order at the selected place, where $T$ is the source cutoff. A coefficient functional built from two adjacent Frobenius slots reads a unit on a ramified seed and separates it from the literal denominator. It also detects a full extra local layer. Lean verification covers the fixed-place argument. Formal verification of the arithmetic selection and inhabited production application is in progress.
+We study the extra-torsion question for the Type I lattice quotient in Alpöge’s construction. Under the original production hypotheses, the paper argument selects an eligible prime and a served place after the family member and word have been fixed. It constructs one class of exact additive order $p^{T+1}$ in the original word quotient whose image has that same order at the selected place, where $T$ is the source cutoff. A coefficient functional built from two adjacent Frobenius slots reads a unit on a ramified seed and separates it from the literal denominator. It also detects a full extra local layer. The indexed theorem and the inhabited production corollary passed the Lean 4.37.0-rc1 kernel build and transitive axiom audit.
 
 ## 1. The source quotients and the main result {#main-result}
 
@@ -123,7 +123,9 @@ Apply Sections 2 and 3 to the resulting adjacent pair, place and word and its si
 
 ## 5. Formal verification and scope {#verification}
 
-The paper result above concerns the original quotients. The fixed-place Lean proof consumes the selected local data, and the indexed-family theorem supplies those data in the paper argument. The formal verification record is dated separately. See [Lean evidence and theorem crosswalk](../verification/LEAN.md) and the [public update on #77][update].
+The Lean 4.37.0-rc1 build and transitive axiom audit cover the indexed-family theorem, the local excess and the inhabited production corollary. The indexed theorem keeps the original word and comparison. Its selected prime satisfies $Z<p<2Z$, where $Z=(X')^{3/4}$. A separate checked scale lemma gives $2Z<X'$ on the sufficiently large tail. Lean checks the comparison into $A_w/U_w$ and the exact order of the image there. The inclusion in Section 1 carries that order into $Q_w$.
+
+The integrated audit found only `propext`, `Classical.choice` and `Quot.sound`. The additional integrated export replays and reference comparison were paused before execution. See the [Lean sources, build evidence and theorem crosswalk](https://github.com/CheyLoveday/RH-public/blob/v0.1.1/papers/type-i-torsion/verification/LEAN.md). The [earlier update on #77][update] records the paper result and the preceding fixed-place checks.
 
 I used AI assistance in developing the proof and its Lean formalization.
 

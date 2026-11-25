@@ -1,0 +1,25 @@
+import Formalism.LocalToGlobal.GlobalTheory.GL6.DiagonalSlopes.TypeIProductionCaller
+open GlobalTheory.EX.TypeIProduction
+set_option pp.universes true
+set_option pp.explicit true
+#check @indexed_typeI_same_place
+#check @indexed_typeI_same_place_with_row
+#check @production_window_of_indexed_typeI
+#check @production_window_with_typeI_row
+#check @production_typeI_inhabited_member
+#print TypeIAtOriginalWord
+#print TypeIAtOriginalWordWithRow
+#print TypeIProductionConclusion
+#print TypeIProductionConclusionWithRow
+#print FirstScalarLayerSurjection
+#print axioms indexed_typeI_same_place
+#print axioms indexed_typeI_same_place_with_row
+#print axioms production_window_of_indexed_typeI
+#print axioms production_window_with_typeI_row
+#print axioms production_typeI_inhabited_member
+#print axioms production_typeI_supplier
+#print axioms production_typeI_distinguished_host
+#print axioms servedWord_fromNativeAdjacentCapacity
+#print axioms family_typeI_prime_pair
+#print axioms family_typeI_depth_at_pair
+#print axioms native_adjacent_capacity_of_depth

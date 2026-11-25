@@ -1,0 +1,108 @@
+{
+  "date_utc": "2026-11-25",
+  "upstream_revision": "9282d3a102c4aff0e6026746db2a8990f5d9cddd",
+  "mathlib_revision": "31ce06eaadf4a200c0e1407c5f10953cf606b8f8",
+  "lean_toolchain": "leanprover/lean4:v4.37.0-rc1",
+  "lean_compiler_revision": "0b77e12952ad39077d80d8bd6b66d601f225c321",
+  "upstream_lake_manifest_sha256": "6b5ad855ab2f8544071569928d1b84e8e6be14636e7b2809e7ccabb3937934ee",
+  "source_overlay": {
+    "file_count": 38,
+    "manifest_sha256": "592297bc090984ab8e8e4b7289dcdeaac330f3c23985e90592b1ef8a7afa95b8",
+    "archive_sha256": "ad12ca95f9453d9ba01959ca7d98ef2466b1152bbb737fac2bf4fc333c973337"
+  },
+  "native_build": {
+    "status": "PASS",
+    "exit": 0
+  },
+  "type_and_axiom_audit": {
+    "status": "PASS",
+    "exit": 0,
+    "input_sha256": "da0cf19b9ce70a5772114503ab8e03257f37c5ddfc7d0016869ed7fb75f26bd7",
+    "output_sha256": "8fec3ee3ae7a17b6d4e3536e544ff015f2e552148f18882fdcd5421dd76e9e41",
+    "endpoint_readback": [
+      "GlobalTheory.EX.TypeIProduction.indexed_typeI_same_place",
+      "GlobalTheory.EX.TypeIProduction.indexed_typeI_same_place_with_row",
+      "GlobalTheory.EX.TypeIProduction.production_window_of_indexed_typeI",
+      "GlobalTheory.EX.TypeIProduction.production_window_with_typeI_row",
+      "GlobalTheory.EX.TypeIProduction.production_typeI_inhabited_member"
+    ],
+    "transitive_axioms": {
+      "GlobalTheory.EX.TypeIProduction.indexed_typeI_same_place": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.indexed_typeI_same_place_with_row": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.production_window_of_indexed_typeI": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.production_window_with_typeI_row": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.production_typeI_inhabited_member": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.production_typeI_supplier": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.production_typeI_distinguished_host": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.servedWord_fromNativeAdjacentCapacity": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.family_typeI_prime_pair": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.family_typeI_depth_at_pair": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "GlobalTheory.EX.TypeIProduction.native_adjacent_capacity_of_depth": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  },
+  "integrated_solution_export": {
+    "status": "STOPPED_ON_REQUEST",
+    "exit": 137,
+    "partial_bytes": 19444007303
+  },
+  "integrated_replays": {
+    "status": "NOT_RUN",
+    "reason": "cancelled before execution"
+  },
+  "reference_build": {
+    "status": "PASS",
+    "exit": 0
+  },
+  "reference_export": {
+    "status": "PASS",
+    "exit": 0
+  },
+  "independent_reference_comparison": {
+    "status": "NOT_RUN",
+    "reason": "cancelled before execution"
+  }
+}
