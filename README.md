@@ -4,13 +4,13 @@
 
 Under the original family hypotheses in Alpöge’s construction, a single class has exact additive order $p^{T+1}$ in the original word quotient and retains that exact order at the selected served place $w\mid p$. Here $T$ is the cutoff for that fibre. At the same place, the ramified local quotient has at least $v_{O_w}(p)$ more length than the scalar contribution. The production corollary supplies a member and word beyond any prescribed lower bound. The witness is existential.
 
-The indexed theorem and the inhabited production caller passed the **Lean 4.37.0-rc1 kernel build and transitive axiom audit**. The result concerns the Type I lattice quotient in the question raised on #77. [Original discussion](https://github.com/leanprover-community/riemann-hypothesis/issues/77)
+The indexed theorem and the inhabited production caller passed the **Lean 4.37.0-rc1 kernel build and transitive axiom audit**. The six independent replays of the integrated proof and the reference comparison have **not run**. The completed six-checker replay covers the fixed-place quotient core. [Verification status](papers/type-i-torsion/verification/MODAL.md#integrated-production-proof) · [Original discussion on #77](https://github.com/leanprover-community/riemann-hypothesis/issues/77)
 
 ## Start here
 
 - **Read the manuscript.** [PDF](papers/type-i-torsion/manuscript/paper.pdf) · [GitHub reading copy](papers/type-i-torsion/manuscript/paper_github.md)
 - **Check the theorem and quotients.** [Theorem A, local excess and production corollary](papers/type-i-torsion/manuscript/paper_github.md#main-result)
-- **Understand why it works.** [Illustrated guide (download HTML)](papers/type-i-torsion/reading/EXPLAINED_ILLUSTRATED.html) · [GitHub reader guide](papers/type-i-torsion/reading/EXPLAINED.md) · [Lamport Plus proof map](papers/type-i-torsion/reading/PROOF_MAP.md#dependency-map)
+- **Understand why it works.** [Illustrated guide (download HTML)](papers/type-i-torsion/reading/EXPLAINED_ILLUSTRATED.html) · [GitHub reader guide](papers/type-i-torsion/reading/EXPLAINED.md) · [Lamport Plus proof map](papers/type-i-torsion/reading/PROOF_MAP.md#dependency-map) · [Reader pilot](papers/type-i-torsion/reading/EXPLAINED.md#reconstruct-the-proof)
 - **Inspect the formal result.** [Indexed theorem](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIIndexedTargets.lean#L122) · [Production caller](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIProductionCaller.lean#L111) · [Verification and reproduction](papers/type-i-torsion/verification/LEAN.md) · [Completed Modal checks](papers/type-i-torsion/verification/MODAL.md)
 
 ## How the proof works
@@ -28,8 +28,15 @@ The arithmetic selection fixes a word before choosing a prime, a served place an
 
 Run `make` with Python 3, Pandoc and Tectonic to regenerate the reading copies. Run `make check-reading` for the GitHub manuscript and `make check-guide` for the illustrated HTML to compare each with fresh generation. The Lean instructions use a separate checkout of the pinned upstream dependency. [Reproduction](papers/type-i-torsion/verification/LEAN.md#reproduction)
 
+The maintained illustrated guide links to `main`. For a release, generate and verify a separate copy from the release checkout. Set `revision` to the full commit SHA served by GitHub for that edition, and set `output` to a separate file path.
+
+```sh
+python3 scripts/illustrated_guide.py --revision "$revision" --output "$output"
+python3 scripts/illustrated_guide.py --revision "$revision" --output "$output" --check
+```
+
 ## Version history and citation
 
-Version 0.1.1 publishes the checked Lean sources and integrated audit. The current proof clarifies the nonempty-orbit condition, the extraction of the ramified seed from the integral span, and the size bound for the short-order exclusion. The theorem statements are unchanged. [Tagged v0.1.1 edition](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.1) · [Previous research draft](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.0)
+Version 0.1.1 publishes the checked Lean sources and integrated audit. The current manuscript spells out the family parameters and joint witnesses. Its proof uses the constant shear from Lean for the output unit and clarifies the nonempty-orbit condition, the extraction of the ramified seed and the short-order exclusion. [Tagged v0.1.1 edition](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.1) · [Previous research draft](https://github.com/CheyLoveday/RH-public/releases/tag/v0.1.0)
 
 Chey Loveday. *Extra Type I torsion via integral Frobenius separation*. GitHub research draft v0.1.1, 25 November 2026.

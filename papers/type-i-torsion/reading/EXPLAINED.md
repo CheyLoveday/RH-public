@@ -47,15 +47,32 @@ In the paper, the lattice $A_w$ can have higher rank. The row gives a **surjecti
 | Why do both orders equal the same power? | Find the first power that kills the seed at this place. The selected orbit makes the orbit set nonempty, so the served equivalence applies. It gives a multiplier outside the prime of that same place that makes this power zero globally. If that multiplier also made the previous power zero locally, the comparison would give a second multiplier outside the same prime. Their product would contradict the choice of first power. | [Transport exact order](PROOF_MAP.md#lp6) |
 | Does the family actually supply a word? | The original design and host construction gives the family. Its inhabited window supplies a member above the proof threshold and the source supplies a distinguished word there. | [Apply the production construction](PROOF_MAP.md#lp7) |
 
+## How to find the separating row
+
+**Work back from the first missing layer.** If the scalar cutoff is $T$, a row that reads a unit on a numerator $a_w$ will read a nonzero value on $p^Ta_w$ modulo $p^{T+1}$. The literal denominator is indexed by subsets of orbits. Choose one orbit and ask for two bounds. A term omitting it needs $T+1$ powers of $p$ from its scalar, while a term retaining it needs those powers from the row on its neighbour operator. This gives the prime search a target. Look among eligible steps for a pair of top positions with enough factors and enough omission depth. Counting pairs in the fixed member measures this directly. The production window supplies a member and word to which that search applies. [Selection and depth](PROOF_MAP.md#lp1) · [Denominator](PROOF_MAP.md#lp5) · [Production](PROOF_MAP.md#lp7)
+
+**Turn the edge relation into a coefficient.** Modulo $p$, the normalized incoming line and hyperplane are orthogonal at each slot. Across the next slot the constant frames have been raised to the $p$th power. Contracting the $p$th powers of the first vector's coordinates with the second vector restores the orthogonality identity even when the two flags vary independently. To realize the powers in the labelled coefficients, take $p$ copies of the same flag within the first slot. Each disjoint contraction supplies one power of $p$. To see how the row can read a unit on the output, keep the standard hyperplane and shear the line from $e_1$ to $e_1+e_k$. The last dual coordinate then reads $1$. [Frobenius contraction and output unit](PROOF_MAP.md#lp3)
+
+**Move the test to a word class.** To get a unit on an actual global form, it suffices that the compared ramified numerators span the chart lattice. If every such numerator read into the maximal ideal, the entire span would read there. The integral masking and sign differences supply this spanning family. Once the row gives local survival and the denominator gives eventual vanishing, look for the first crossing between them. The multiplier supplied there clears the global denominator, and the preceding local power can only vanish if a second multiplier contradicts minimality. [Ramified seed](PROOF_MAP.md#lp4) · [Exact order](PROOF_MAP.md#lp6)
+
 ## Reconstruct the proof
 
-Try these before opening the detailed steps.
+For the Lamport Plus reader pilot, record a first set of answers after reading the manuscript, before using the guide or opening the detailed steps. Then read this guide and the proof map, answer again without looking at them and record where your reasoning changed. In both passes, identify the hypothesis that rules out each failure. Try the transfer exercise before opening its answer. [Manuscript](../manuscript/paper_github.md) · [Proof map](PROOF_MAP.md)
 
 1. Starting from a unit reading, explain why the row detects survival at $p^T$ even if $T>0$ and reducing the reading directly modulo $p$ gives zero.
 2. Explain why the denominator proof needs both the retained-orbit and omitted-orbit cases. Which case still needs a calculation if the omitted-orbit scalar is too small?
 3. Explain where the same served prime enters the argument that clearing the global denominator preserves local survival. What fails if the multiplier can belong to that prime?
 4. Locate the step that rules out a vacuous family statement with no sufficiently large member.
+5. Explain why the two slots may have independent flag variables but the $p$ copies in a contraction cannot be replaced by independent flags in the first slot.
+6. Explain how a unit readout on the local lattice implies a unit readout on an actual ramified numerator. What property of the maximal ideal does the argument use?
 
 **Transfer exercise.** Let $O$ be a discrete valuation ring in which $p$ has valuation $e>0$. Let $A$ be free of rank $r$ over $O$ and $U\subseteq p^TA$. Suppose two rows on $A$ take $U$ into $p^{T+1}O$ and their readouts on two vectors of $A$ form a matrix with unit determinant. Work out a lower bound on the length of $A/U$ and identify which part comes from the two rows. Explain which further premise would give finiteness if you are only given these two rows. This is a model question about the method. The paper constructs one row on the selected fibre.
 
-[Detailed Lamport Plus proof map](PROOF_MAP.md) · [Lean crosswalk](../verification/LEAN.md) · [Completed Modal checks](../verification/MODAL.md)
+<details>
+<summary>Transfer exercise answer</summary>
+
+The readout matrix is invertible over $O$, so the joint row surjects onto $O^2$. Restrict to $p^TA$ and reduce modulo $p^{T+1}$ to get a surjection from $p^TA/U$ onto two copies of $p^TO/p^{T+1}O$. They contribute at least $2e$ to the length, in addition to the length $erT$ of $A/p^TA$. Thus $\ell_O(A/U)\ge erT+2e$. An additional containment $p^BA\subseteq U$ for some $B\ge T$ gives finite length. The two rows alone allow $U=0$.
+
+</details>
+
+Independent human reader assessment is pending. [Detailed Lamport Plus proof map](PROOF_MAP.md) · [Lean crosswalk](../verification/LEAN.md) · [Completed Modal checks](../verification/MODAL.md)

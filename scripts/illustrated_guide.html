@@ -138,14 +138,17 @@
   <a href="#follow-one-word-and-place">Word and place</a>
   <a href="#what-one-extra-layer-means">Worked example</a>
   <a href="#travel-through-the-proof">Proof steps</a>
+$if(row_discovery)$
+  <a href="#how-to-find-the-separating-row">Finding the row</a>
+$endif$
   <a href="#reconstruct-the-proof">Reconstruction questions</a>
 </nav>
 <main>
 $body$
 </main>
 <footer>
-  <p>Generated reading edition. Edit <a href="EXPLAINED.md"><code>$source_path$</code></a>.</p>
-  <p>Source SHA-256 <code>$source_sha$</code>. Generate with <code>python3 scripts/illustrated_guide.py</code>.</p>
+  <p>Generated reading edition. Source <a href="EXPLAINED.md"><code>$source_path$</code></a>.</p>
+  <p>Source SHA-256 <code>$source_sha$</code>. Generate with <code>$generation_command$</code>.</p>
 </footer>
 </body>
 </html>

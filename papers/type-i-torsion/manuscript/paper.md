@@ -32,7 +32,7 @@ The ramified subspace is linear over the local fraction field. Division by the n
 
 The given comparison on numerators, written $c_w$, takes $A_u$ into $A_w$. The served equivalence applies when the selected-orbit set is nonempty, as in Theorem A. For any numerator $b\in A_u$, it identifies $c_w(b)\in\mathrm{NP}_w$ with the existence of an integral multiplier outside the prime of $w$ that sends $b$ into $N_u$. Taking the multiplier $1$ proves descent to an additive map $C_u\to A_w/U_w$. Write $\overline{\mathrm{cmp}}_w:C_u\to Q_w$ for its composite with the injection. The order of its image can equivalently be computed in $A_w/U_w$. [Source comparison and localization predicate][served]
 
-**Theorem A (selected Type I torsion).** Let $0<\varepsilon<1/52$ and let $F:\mathrm{FamP}(\varepsilon)$ satisfy `ChosenE`, `ChosenWall`, `TuSize` and `GroupCompatibilityFamily`, using the comparison in `F.ex`. There exists $x_0>F.x_1$ such that for each $x\in F.\mathrm{Win}$ with $x\ge x_0$, each $i:F.\mathrm{Ix}(x)$ and each word $u$ of $D=F.D(x,i)$, the following holds. With $L=F.L(x,i)$ there is a prime $p$ satisfying `Cand`, $p_0\le p<X'$ and $p\notin L.\mathrm{drop}$. There is a supported served place $w\mid p$, off the word’s level prime, with the native `GIdx` data, and a selected rank-one orbit with two distinct adjacent top slots. On that same fibre there is a class $z\in C_u$ with
+**Theorem A (selected Type I torsion).** Let $0<\varepsilon<1/52$ and $F:\mathrm{FamP}(\varepsilon)$. Fix real constants $C_0,C_H$ and assume $\mathrm{ChosenE}(F,C_0,C_H)$, `ChosenWall F`, `TuSize F` and `GroupCompatibilityFamily F`, using the comparison in `F.ex`. There exists $x_0>F.x_1$ such that for each $x\in F.\mathrm{Win}$ with $x\ge x_0$, each $i:F.\mathrm{Ix}(x)$ and each word $u$ of $D=F.D(x,i)$, the following holds. With $L=F.L(x,i)$ there is a prime $p$ satisfying `Cand`, $p_0\le p<X'$ and $p\notin L.\mathrm{drop}$. There is a supported served place $w\mid p$, off the word’s level prime, with the native `GIdx` data, and a selected rank-one orbit with two distinct adjacent top slots. On that same fibre there is a class $z\in C_u$ with
 $$
  \operatorname{addOrderOf}(z)
  =\operatorname{addOrderOf}(\overline{\mathrm{cmp}}_w(z))
@@ -40,11 +40,11 @@ $$
 $$
 [Source Type I branch and original selection][typei] · [Family data][family]
 
-**Proposition B (local excess).** On the witnesses in Theorem A there is an $O_w$-linear surjection
+**Proposition B (local excess).** Theorem A and this proposition hold for a single choice of prime, place, orbit, slots and class. At that same place $w$ there is an $O_w$-linear surjection
 $$
  \frac{p^TA_w}{P_w\cap p^TA_w}\twoheadrightarrow\frac{p^TO_w}{p^{T+1}O_w}.
 $$
-Thus $p^TA_w\nsubseteq P_w$. The finite length of $A_w/U_w$ is at least $e_wT\operatorname{rank}_{O_w}(A_w)+e_w$, where $e_w=v_{O_w}(p)>0$.
+Thus $p^TA_w\nsubseteq P_w$. With $e_w=v_{O_w}(p)>0$, the finite length of $A_w/U_w$ is at least $e_wT\operatorname{rank}_{O_w}(A_w)+e_w$.
 
 **Production corollary.** Under the established inputs of the source design and host construction, there is an inhabited member beyond every prescribed lower bound, and a word for which Theorem A and Proposition B hold. The proof supplies the prime, place, adjacent slots, depth inequalities and separating row. The witness is selected existentially.
 
@@ -64,9 +64,16 @@ The factor $p^{\mathrm{ArV}(v)}$ and the source determinant twist give one $p$ f
 $$
  V_j^{\mathsf T}U_j=p(\det g_j)^{-1}I .
 $$
-The constant frames at consecutive slots are related by entrywise $p$th powers modulo rational $p$, including at the cyclic wrap. Modulo $p$, $U_j$ has image in a fixed line, since $E_p$ has only its first diagonal entry nonzero. The columns of $V_j$ give dual vectors that annihilate that line by the displayed identity. After ordered substitution the line vectors and dual vectors stay in these two subspaces. Thus Frobenius on the constant frames makes the contraction vanish modulo $p$ across the adjacent slots, even though the ordered flag variables at those slots are independent. If $s$ is the hyperplane slot, the transposed contraction gives the same conclusion. [Native rank-one edge basis][edge] · [Frobenius congruence][frob]
+Reduce modulo the rational prime $p$ and write $U,V$ and $U',V'$ for the normalized matrices at consecutive slots in this reduction. Entrywise Frobenius $\varphi$ relates the constant frames, including at the cyclic wrap. Thus $U'=\varphi(U)$, $V'=\varphi(V)$ and $V^{\mathsf T}U=0$. For independent flag coordinates $x,y'$ in the two slots,
+$$
+ \varphi(Ux)^{\mathsf T}V'y'
+ =\varphi(x)^{\mathsf T}\varphi(U^{\mathsf T}V)y'=0.
+$$
+For a hyperplane followed by a line, the contraction uses $\varphi(V^{\mathsf T}U)=0$ directly. The matrix identity holds in the reduced polynomial ring with independent slot variables. [Native rank-one edge basis][edge] · [Frobenius congruence][frob] · [Checked contractions][contractions]
 
-Choose $R$ disjoint groups of $p$ labelled factors at $s$ and one at $s^+$. Contract each group diagonally and take the product on the labelled tensor coordinates. Within a group the $p$ repeated factors come from the same generic flag. This makes the reduction of their coordinate product the entrywise Frobenius power. The product of the $R$ contractions is divisible by $p^R$ on the normalized generic incoming polynomial. Ordered substitution and coefficient extraction preserve this divisibility. At the standard output use the standard flag in the even slot and a determinant-one signed permutation in the odd slot whose first $k-1$ columns span $e_2,\ldots,e_k$. The marked coordinates are $e_1$ and $\pm e_1^*$. Choose a unit coordinate on each unused factor. Native frame covariance supplies an integral output vector on which this same functional takes value $\pm1$. An overall sign gives value $1$. [Native frame covariance][frame]
+Choose $R$ disjoint groups of $p$ labelled factors at $s$ and one at $s^+$. Contract each group diagonally and take the product on the labelled tensor coordinates. Within a group all $p$ repeated factors come from the same generic flag. This makes the reduction of their coordinate product the entrywise Frobenius power. The product of the $R$ contractions is divisible by $p^R$ on the normalized generic incoming polynomial. Ordered substitution and coefficient extraction preserve this divisibility.
+
+**A unit on the output.** At the standard output tuple use the constant frame $g=I-E_{1k}$ in the line slot and the identity in every other slot. This determinant-one integral change of basis preserves the standard lattice. With empty words, the inverse-transpose frame $g^{-\mathsf T}=I+E_{k1}$ gives the line $e_1+e_k$, and the standard hyperplane spanned by $e_1,\ldots,e_{k-1}$ gives the signed dual coordinate $e_k^*$. The marked contraction reads $(e_1+e_k)^{[p]}\cdot e_k^*=1$, where $[p]$ denotes entrywise $p$th powers. In the opposite orientation the entrywise power is on $e_k^*$ and the value is again $1$. The leading minors on every unused factor are $1$. Native frame covariance puts this empty-word vector in the integral output lattice, and the row takes value $1$ on it. [Native frame covariance][frame] · [Constant shear][shear] · [Checked output unit][row]
 
 **The ramified numerator and the literal span.** Use the original comparison on that same component and standard tuple. The chart evaluation identifies the integral coefficient values with restriction at one adelic class. Masking to that class preserves the integral word lattice. Applying all tame sign differences gives a ramified numerator $b\in A_u$. Every nonempty product of distinct coordinate signs moves the class by freeness, and its contribution on that class vanishes. Each full tame norm vanishes on the difference in its coordinate by reindexing the residue units. The other coordinates commute with that norm. Thus the ramified lift preserves the chart evaluation of the original integral word form. [Seed construction in #77][seed] · [Free action on classes][free]
 
@@ -126,9 +133,11 @@ Apply Sections 2 and 3 to the resulting adjacent pair, place and word and its si
 
 ## 5. Formal verification and scope {#verification}
 
-The Lean 4.37.0-rc1 build and transitive axiom audit cover the indexed-family theorem, the local excess and the inhabited production corollary. The indexed theorem keeps the original word and comparison. Its selected prime satisfies $Z<p<2Z$, where $Z=(X')^{3/4}$. A separate checked scale lemma gives $2Z<X'$ on the sufficiently large tail. Lean checks the comparison into $A_w/U_w$ and the exact order of the image there. The inclusion in Section 1 carries that order into $Q_w$.
+The Lean 4.37.0-rc1 build and transitive axiom audit cover the indexed-family theorem, the local excess and the inhabited production corollary. The indexed theorem keeps the original word and comparison. Its selected prime satisfies $Z<p<2Z$, where $Z=(X')^{3/4}$, and the returned `Cand` supplies $p<X'$. The selector uses the scale estimate to prove candidate eligibility. [Definition of `Cand`][cand]
 
-The integrated audit found only `propext`, `Classical.choice` and `Quot.sound`. The additional integrated export replays and reference comparison were paused before execution. See the [Lean sources, build evidence and theorem crosswalk](https://github.com/CheyLoveday/RH-public/blob/v0.1.1/papers/type-i-torsion/verification/LEAN.md). The [earlier update on #77][update] records the paper result and the preceding fixed-place checks.
+The checked endpoint returns the row on $A_w$. Evaluation on $M_w$ lands in the same native Weyl lattice, so composing it with the coefficient functional gives the ambient row of Section 2. The checked first-span estimate applies on all of $P_w$. Lean checks the comparison into $A_w/U_w$ and the exact order of the image there. The injection in Section 1 carries that order into $Q_w$. [Row assembly][rowcore] · [First-span estimate][firstspan]
+
+The integrated audit found only `propext`, `Classical.choice` and `Quot.sound`. The additional integrated export replays and reference comparison were paused before execution. See the [tagged Lean sources and build evidence](https://github.com/CheyLoveday/RH-public/blob/v0.1.1/papers/type-i-torsion/verification/LEAN.md). The [earlier update on #77][update] records the paper result and the preceding fixed-place checks.
 
 I used AI assistance in developing the proof and its Lean formalization.
 
@@ -137,6 +146,7 @@ I used AI assistance in developing the proof and its Lean formalization.
 [seed]: https://github.com/leanprover-community/riemann-hypothesis/issues/77#issuecomment-7146180600
 [seedbridge]: https://github.com/CheyLoveday/RH-public/blob/b03e1454cedb55a56337055288858477a51e3f21/papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/F6SeedBridge.lean#L159-L236
 [np]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/IsResidueClassZero.lean#L479-L505
+[cand]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/IsResidueClassZero.lean#L309-L311
 [served]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/LocalRingCardinality/DataLatDefs.lean#L67-L83
 [typei]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/IsResidueClassZero.lean#L262-L333
 [family]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/ParConsts.lean#L65-L121
@@ -146,6 +156,11 @@ I used AI assistance in developing the proof and its Lean formalization.
 [frame]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/LocalToGlobal/GroupLattices/ComparisonMaps/DeterminantTwistRowActionMem.lean#L17-L55
 [edge]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/LatticeSystems.lean#L2142-L2169
 [frob]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/UnramifiedQuadraticSetting.lean#L61-L78
+[contractions]: https://github.com/CheyLoveday/RH-public/blob/27eb899d80386aeff79ececa19c12c60d69e2bd9/papers/type-i-torsion/lean/src/Formalism/SharpRestriction/GrowthBounds/TypeIAdjacentContractions.lean#L36-L66
+[shear]: https://github.com/CheyLoveday/RH-public/blob/27eb899d80386aeff79ececa19c12c60d69e2bd9/papers/type-i-torsion/lean/src/Formalism/SharpRestriction/GrowthBounds/TypeINativeShearUnit.lean#L12-L26
+[row]: https://github.com/CheyLoveday/RH-public/blob/27eb899d80386aeff79ececa19c12c60d69e2bd9/papers/type-i-torsion/lean/src/Formalism/SharpRestriction/GrowthBounds/TypeINativeSeparatingRow.lean#L14-L48
+[rowcore]: https://github.com/CheyLoveday/RH-public/blob/27eb899d80386aeff79ececa19c12c60d69e2bd9/papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeINativeQuotientCore.lean#L55-L79
+[firstspan]: https://github.com/CheyLoveday/RH-public/blob/27eb899d80386aeff79ececa19c12c60d69e2bd9/papers/type-i-torsion/lean/src/Formalism/SharpRestriction/GrowthBounds/TypeILiteralNP.lean#L151-L171
 [free]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/GroupActionMulSingleEqDilation.lean#L795-L806
 [sum]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/SharpRestriction/GrowthBounds/LatticeSystems.lean#L510-L525
 [preserve]: https://github.com/leanprover-community/riemann-hypothesis/blob/9282d3a102c4aff0e6026746db2a8990f5d9cddd/src/Formalism/LocalToGlobal/GroupLattices/FockModels/OperatorsPreserveLattices.lean#L336-L345
