@@ -10,7 +10,8 @@ The indexed theorem and the inhabited production caller passed the **Lean 4.37.0
 
 - **Read the manuscript.** [PDF](papers/type-i-torsion/manuscript/paper.pdf) · [GitHub reading copy](papers/type-i-torsion/manuscript/paper_github.md)
 - **Check the theorem and quotients.** [Theorem A, local excess and production corollary](papers/type-i-torsion/manuscript/paper_github.md#main-result)
-- **Understand why it works.** [Illustrated guide (download HTML)](papers/type-i-torsion/reading/EXPLAINED_ILLUSTRATED.html) · [GitHub reader guide](papers/type-i-torsion/reading/EXPLAINED.md) · [Lamport Plus proof map](papers/type-i-torsion/reading/PROOF_MAP.md#dependency-map) · [Reader pilot](papers/type-i-torsion/reading/EXPLAINED.md#reconstruct-the-proof)
+- **Understand why it works.** [Illustrated guide (download HTML)](papers/type-i-torsion/reading/EXPLAINED_ILLUSTRATED.html) · [GitHub reader guide](papers/type-i-torsion/reading/EXPLAINED.md) · [Lamport Plus proof map](papers/type-i-torsion/reading/PROOF_MAP.md#dependency-map) · [Discovery and counterexamples](papers/type-i-torsion/reading/DISCOVERY.md)
+- **Try reconstructing the proof.** [Reader exercises](papers/type-i-torsion/reading/EXPLAINED.md#reconstruct-the-proof) · [Assessment record](papers/type-i-torsion/verification/READER_ASSESSMENT.md)
 - **Inspect the formal result.** [Indexed theorem](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIIndexedTargets.lean#L122) · [Production caller](papers/type-i-torsion/lean/src/Formalism/LocalToGlobal/GlobalTheory/GL6/DiagonalSlopes/TypeIProductionCaller.lean#L111) · [Verification and reproduction](papers/type-i-torsion/verification/LEAN.md) · [Completed Modal checks](papers/type-i-torsion/verification/MODAL.md)
 
 ## How the proof works
@@ -28,7 +29,7 @@ The arithmetic selection fixes a word before choosing a prime, a served place an
 
 Run `make` with Python 3, Pandoc and Tectonic to regenerate the reading copies. Run `make check-reading` for the GitHub manuscript and `make check-guide` for the illustrated HTML to compare each with fresh generation. The Lean instructions use a separate checkout of the pinned upstream dependency. [Reproduction](papers/type-i-torsion/verification/LEAN.md#reproduction)
 
-The maintained illustrated guide links to `main`. For a release, generate and verify a separate copy from the release checkout. Set `revision` to the full commit SHA served by GitHub for that edition, and set `output` to a separate file path.
+The maintained illustrated guide links to `main`. For a review branch or release, generate and verify a separate copy from that checkout. Set `revision` to the full commit SHA served by GitHub for that edition, and set `output` to a separate file path.
 
 ```sh
 python3 scripts/illustrated_guide.py --revision "$revision" --output "$output"

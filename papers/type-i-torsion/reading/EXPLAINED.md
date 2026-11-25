@@ -2,6 +2,15 @@
 
 The Type I estimate in Alpöge’s construction leaves room for extra torsion. The paper shows that the arithmetic actually uses some of that room. For each sufficiently large member of an original family and each word in that member, it selects a prime $p$ and a place $w$ above it. One class in the original word quotient has exact additive order $p^{T+1}$, and its image at $w$ has that same order. Here $T$ is the cutoff for the chosen fibre. The production corollary supplies a member and word beyond any prescribed bound. [Exact statement and hypotheses](../manuscript/paper_github.md#main-result)
 
+## Glossary
+
+- **Word.** A piece of the source indexing data that determines the global lattice quotient being studied. The proof fixes it before choosing a prime.
+- **Served place.** A place $w$ above $p$ where the source supplies the comparison for that word.
+- **Lattice.** A module of integral vectors inside a vector space over a fraction field. The local lattices here use the coefficient ring $O_w$.
+- **Torsion.** A class annihilated by some positive integer. Its additive order is the least positive integer that annihilates it.
+- **Frobenius.** In the calculation modulo $p$, the map raising coordinates to their $p$th powers. It relates the constant frames of consecutive slots.
+- **Cutoff.** The exponent $T$ that determines the scalar layer $p^TA_w$ in the local denominator. The proof detects survival inside this layer.
+
 ## The idea
 
 A quotient forgets whatever lies in its denominator. To prove that a vector survives, find a measurement that vanishes on the denominator but takes a nonzero value on the vector. Here the measurement is an integral linear functional, called a **row**, used modulo $p^{T+1}$. It takes a unit value on the image of a ramified form. Multiplying that form by $p^T$ gives a reading of $p^T$ times a unit, which is still nonzero modulo $p^{T+1}$.
@@ -55,9 +64,11 @@ In the paper, the lattice $A_w$ can have higher rank. The row gives a **surjecti
 
 **Move the test to a word class.** To get a unit on an actual global form, it suffices that the compared ramified numerators span the chart lattice. If every such numerator read into the maximal ideal, the entire span would read there. The integral masking and sign differences supply this spanning family. Once the row gives local survival and the denominator gives eventual vanishing, look for the first crossing between them. The multiplier supplied there clears the global denominator, and the preceding local power can only vanish if a second multiplier contradicts minimality. [Ramified seed](PROOF_MAP.md#lp4) · [Exact order](PROOF_MAP.md#lp6)
 
+[Backward argument and counterexamples](DISCOVERY.md)
+
 ## Reconstruct the proof
 
-For the Lamport Plus reader pilot, record a first set of answers after reading the manuscript, before using the guide or opening the detailed steps. Then read this guide and the proof map, answer again without looking at them and record where your reasoning changed. In both passes, identify the hypothesis that rules out each failure. Try the transfer exercise before opening its answer. [Manuscript](../manuscript/paper_github.md) · [Proof map](PROOF_MAP.md)
+For the Lamport Plus reader pilot, start with the exact statement and the seven steps in the proof map, with its detailed blocks closed. Answer the questions, then use the guide and open the detailed blocks to check your reconstruction. Record the hypothesis that rules out each failure. Try the transfer exercise before opening its answer. [Exact statement](../manuscript/paper_github.md#main-result) · [Proof map](PROOF_MAP.md#dependency-map) · [Assessment procedure](../verification/READER_ASSESSMENT.md)
 
 1. Starting from a unit reading, explain why the row detects survival at $p^T$ even if $T>0$ and reducing the reading directly modulo $p$ gives zero.
 2. Explain why the denominator proof needs both the retained-orbit and omitted-orbit cases. Which case still needs a calculation if the omitted-orbit scalar is too small?
@@ -68,11 +79,4 @@ For the Lamport Plus reader pilot, record a first set of answers after reading t
 
 **Transfer exercise.** Let $O$ be a discrete valuation ring in which $p$ has valuation $e>0$. Let $A$ be free of rank $r$ over $O$ and $U\subseteq p^TA$. Suppose two rows on $A$ take $U$ into $p^{T+1}O$ and their readouts on two vectors of $A$ form a matrix with unit determinant. Work out a lower bound on the length of $A/U$ and identify which part comes from the two rows. Explain which further premise would give finiteness if you are only given these two rows. This is a model question about the method. The paper constructs one row on the selected fibre.
 
-<details>
-<summary>Transfer exercise answer</summary>
-
-The readout matrix is invertible over $O$, so the joint row surjects onto $O^2$. Restrict to $p^TA$ and reduce modulo $p^{T+1}$ to get a surjection from $p^TA/U$ onto two copies of $p^TO/p^{T+1}O$. They contribute at least $2e$ to the length, in addition to the length $erT$ of $A/p^TA$. Thus $\ell_O(A/U)\ge erT+2e$. An additional containment $p^BA\subseteq U$ for some $B\ge T$ gives finite length. The two rows alone allow $U=0$.
-
-</details>
-
-Independent human reader assessment is pending. [Detailed Lamport Plus proof map](PROOF_MAP.md) · [Lean crosswalk](../verification/LEAN.md) · [Completed Modal checks](../verification/MODAL.md)
+[Transfer exercise answer](DISCOVERY.md#transfer-exercise-answer) · [Detailed proof map](PROOF_MAP.md) · [Lean crosswalk](../verification/LEAN.md) · [Completed Modal checks](../verification/MODAL.md)

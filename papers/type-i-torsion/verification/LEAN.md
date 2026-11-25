@@ -20,6 +20,8 @@ Lean returns the local order in $A_w/U_w$. The injection into $Q_w=M_w/\mathrm{N
 
 The paper describes recovery from independent coefficient columns by a Gram inverse. Lean builds the corresponding readout through the polarized kernel on labelled flag blocks. [Native coefficient row](../lean/src/Formalism/SharpRestriction/GrowthBounds/TypeINativeCoefficient.lean#L48-L70)
 
+The [claim register](../reading/CLAIMS.csv) gives the reverse map from declarations to proof steps. Dependencies are listed by claim ID with `|` as the separator. `lean-checked` rows name the corresponding declaration in the checked source. `paper-proof` rows give the argument or correspondence in prose, with supporting sources in `evidence_ref`. The integrated run and fixed-place replays retain their recorded scopes.
+
 ## Evidence and scope
 
 The native build and integrated audit both exited zero. The audit prints the five public endpoint types and their supporting definitions, and reports the transitive axiom sets of eleven declarations. Each set contains only `propext`, `Classical.choice` and `Quot.sound`. The proof overlay, audit input and recorded output are published with this version. [Audit input](../lean/TypeIIntegratedAudit.lean) · [Audit output](integrated-types-and-axioms.txt)
